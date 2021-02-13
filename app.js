@@ -21,7 +21,7 @@ const showImages = (images) => {
     div.innerHTML = ` <img class="img-fluid img-thumbnail" onclick=selectItem(event,"${image.webformatURL}") src="${image.webformatURL}" alt="${image.tags}">`;
     gallery.appendChild(div)
   })
-
+  toggleLoader();
 }
 
 const getImages = (query) => {
@@ -35,11 +35,23 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   // call toggle image function
-  toggleImage(element);
+  
   let item = sliders.indexOf(img);
-  if (item === -1) {
+   if (item !== -1) {
+    sliders.splice(img, 1);
+    
+  }
+  else{
     sliders.push(img);
   }
+  // if (item === -1) {
+  //   sliders.push(img);
+  // }
+  // else{
+  //   sliders.splice(img, 1);
+  // }
+  console.log(sliders);
+  toggleImage(element);
 }
 var timer
 const createSlider = () => {
@@ -66,7 +78,6 @@ const createSlider = () => {
   document.querySelector('.main').style.display = 'block';
   // hide image aria
   imagesArea.style.display = 'none';
-
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -109,6 +120,7 @@ const changeSlide = (index) => {
 }
 
 searchBtn.addEventListener('click', function () {
+  toggleLoader();
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
@@ -123,7 +135,7 @@ document.getElementById('search').addEventListener('keydown', event => {
 })
 
 sliderBtn.addEventListener('click', function () {
-  createSlider()
+  createSlider();
 })
 
 document.getElementById('duration').addEventListener('keydown', event => {
@@ -136,3 +148,6 @@ const toggleImage = image => {
   image.classList.toggle('added');
 }
 
+const toggleLoader = () => {
+  document.getElementById('loading').classList.toggle('d-flex');
+}
