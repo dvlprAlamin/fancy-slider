@@ -26,6 +26,7 @@ const showImages = (images) => {
 }
 
 const getImages = (query) => {
+  toggleLoader();
   fetch(`https://pixabay.com/api/?key=${KEY}=${query}&image_type=photo&pretty=true`)
     .then(response => response.json())
     .then(data => showImages(data.hits))
@@ -110,7 +111,6 @@ const changeSlide = (index) => {
 }
 
 searchBtn.addEventListener('click', function () {
-  toggleLoader();
   document.querySelector('.main').style.display = 'none';
   clearInterval(timer);
   const search = document.getElementById('search');
@@ -140,6 +140,8 @@ const toggleImage = image => {
 
 const toggleLoader = () => {
   document.getElementById('loading').classList.toggle('d-flex');
+  document.getElementById('gallery').classList.toggle('d-none');
+  document.getElementById('load-more').classList.toggle('d-none');
 }
 
 
