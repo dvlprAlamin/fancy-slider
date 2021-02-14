@@ -33,24 +33,14 @@ const getImages = (query) => {
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
-  let element = event.target;
-  // call toggle image function
-  
+  let element = event.target;  
   let item = sliders.indexOf(img);
-   if (item !== -1) {
-    sliders.splice(img, 1);
-    
-  }
+  if(item >=0)
+  sliders.splice(item,1);
   else{
     sliders.push(img);
   }
-  // if (item === -1) {
-  //   sliders.push(img);
-  // }
-  // else{
-  //   sliders.splice(img, 1);
-  // }
-  console.log(sliders);
+  // call toggle image function
   toggleImage(element);
 }
 var timer
@@ -62,7 +52,6 @@ const createSlider = () => {
   }
   const duration = document.getElementById('duration').value || 1000;
   if(duration <= 0){
-    alert('Enter some positive value');
     return;
   }
   // crate slider previous next area
