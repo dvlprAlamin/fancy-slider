@@ -22,6 +22,7 @@ const showImages = (images) => {
     gallery.appendChild(div)
   })
   toggleLoader();
+  document.getElementById('load-more').style.display = 'block';
 }
 
 const getImages = (query) => {
@@ -140,3 +141,24 @@ const toggleImage = image => {
 const toggleLoader = () => {
   document.getElementById('loading').classList.toggle('d-flex');
 }
+
+
+
+
+
+const loadMore = document.querySelector('#load-more');
+    let currentItems = 8;
+    loadMore.addEventListener('click', (event) => {
+        const elementList = [...document.querySelectorAll('.gallery .img-item')];
+        for (let i = currentItems; i < currentItems + 8; i++) {
+            if (elementList[i]) {
+                elementList[i].style.display = 'block';
+            }
+        }
+        currentItems += 8;
+
+        // Load more button will be hidden after list fully loaded
+        if (currentItems >= elementList.length) {
+            event.target.style.display = 'none';
+        }
+    })

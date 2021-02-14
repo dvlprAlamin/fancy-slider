@@ -36,7 +36,8 @@ img {
   cursor: pointer;
 }
 
-.prev, .next {
+.prev,
+.next {
   background-color: transparent;
   padding: 8px 10px;
   color: #fff;
@@ -63,4 +64,28 @@ img {
     height: 300px;
     width: 90%;
   }
+}
+
+
+.img-item {
+  display: none;
+  margin: 1rem 0;
+}
+.img-item img{
+  object-fit: cover;
+  height:12rem;
+  width: 100%;
+}
+#load-more {
+  display: none;
+}
+.img-item:nth-child(1),
+.img-item:nth-child(2),
+.img-item:nth-child(3),
+.img-item:nth-child(4),
+.img-item:nth-child(5),
+.img-item:nth-child(6),
+.img-item:nth-child(7),
+.img-item:nth-child(8) {
+  display: block;
 }
