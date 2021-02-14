@@ -15,11 +15,11 @@ const showImages = (images) => {
   gallery.innerHTML = '';
   const loadMore = document.getElementById('load-more');
   loadMore.style.display = 'block';
-  if(images.length === 0){
+  if (images.length === 0) {
     gallery.innerHTML = `<h2 class='text-danger mx-auto mt-5'> Sorry! No matches found.</h2>`;
     loadMore.style.display = 'none';
   }
-  if(images.length < 9){
+  if (images.length < 9) {
     loadMore.style.display = 'none';
   }
   // show gallery title
@@ -43,11 +43,12 @@ const getImages = (query) => {
 
 let slideIndex = 0;
 const selectItem = (event, img) => {
-  let element = event.target;  
+  let element = event.target;
   let item = sliders.indexOf(img);
-  if(item >=0)
-  sliders.splice(item,1);
-  else{
+  // add and remove selection by toggle
+  if (item >= 0)
+    sliders.splice(item, 1);
+  else {
     sliders.push(img);
   }
   // call toggle image function
@@ -61,7 +62,7 @@ const createSlider = () => {
     return;
   }
   const duration = document.getElementById('duration').value || 1000;
-  if(duration <= 0){
+  if (duration <= 0) {
     return;
   }
   // crate slider previous next area
@@ -127,7 +128,7 @@ searchBtn.addEventListener('click', function () {
 })
 // Enter button event handler for search
 document.getElementById('search').addEventListener('keydown', event => {
-  if(event.key === 'Enter'){
+  if (event.key === 'Enter') {
     searchBtn.click();
   }
 })
@@ -136,16 +137,19 @@ sliderBtn.addEventListener('click', function () {
   createSlider();
 })
 
+// Enter button event handler for slider
 document.getElementById('duration').addEventListener('keydown', event => {
-  if(event.key === 'Enter'){
+  if (event.key === 'Enter') {
     sliderBtn.click();
   }
 })
 
+// image toggler for slide
 const toggleImage = image => {
   image.classList.toggle('added');
 }
 
+// loading toggler 
 const toggleLoader = () => {
   document.getElementById('loading').classList.toggle('d-flex');
   document.getElementById('gallery').classList.toggle('d-none');
@@ -153,17 +157,17 @@ const toggleLoader = () => {
 
 // load more button feature
 const loadMore = document.querySelector('#load-more');
-    let currentItems = 8;
-    loadMore.addEventListener('click', (event) => {
-        const elementList = [...document.querySelectorAll('.gallery .img-item')];
-        for (let i = currentItems; i < currentItems + 8; i++) {
-            if (elementList[i]) {
-                elementList[i].style.display = 'block';
-            }
-        }
-        currentItems += 8;
-        // Load more button will be hidden after list fully loaded
-        if (currentItems >= elementList.length) {
-            event.target.style.display = 'none';
-        }
-    })
+let currentItems = 8;
+loadMore.addEventListener('click', (event) => {
+  const elementList = [...document.querySelectorAll('.gallery .img-item')];
+  for (let i = currentItems; i < currentItems + 8; i++) {
+    if (elementList[i]) {
+      elementList[i].style.display = 'block';
+    }
+  }
+  currentItems += 8;
+  // Load more button will be hidden after list fully loaded
+  if (currentItems >= elementList.length) {
+    event.target.style.display = 'none';
+  }
+})

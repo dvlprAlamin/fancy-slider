@@ -66,14 +66,13 @@ img {
   }
 }
 
-
 .img-item {
   display: none;
   margin: 1rem 0;
 }
-.img-item img{
+.img-item img {
   object-fit: cover;
-  height:12rem;
+  height: 12rem;
   width: 100%;
 }
 #load-more {
