@@ -13,6 +13,15 @@ const KEY = '20264298-e5a8b4fc5ab34701366ef6e15&q';
 const showImages = (images) => {
   imagesArea.style.display = 'block';
   gallery.innerHTML = '';
+  const loadMore = document.getElementById('load-more');
+  loadMore.style.display = 'block';
+  if(images.length === 0){
+    gallery.innerHTML = `<h2 class='text-danger mx-auto mt-5'> Sorry! No matches found.</h2>`;
+    loadMore.style.display = 'none';
+  }
+  if(images.length < 9){
+    loadMore.style.display = 'none';
+  }
   // show gallery title
   galleryHeader.style.display = 'flex';
   images.forEach(image => {
@@ -22,7 +31,6 @@ const showImages = (images) => {
     gallery.appendChild(div)
   })
   toggleLoader();
-  document.getElementById('load-more').style.display = 'block';
 }
 
 const getImages = (query) => {
@@ -141,13 +149,9 @@ const toggleImage = image => {
 const toggleLoader = () => {
   document.getElementById('loading').classList.toggle('d-flex');
   document.getElementById('gallery').classList.toggle('d-none');
-  document.getElementById('load-more').classList.toggle('d-none');
 }
 
-
-
-
-
+// load more button feature
 const loadMore = document.querySelector('#load-more');
     let currentItems = 8;
     loadMore.addEventListener('click', (event) => {
@@ -158,7 +162,6 @@ const loadMore = document.querySelector('#load-more');
             }
         }
         currentItems += 8;
-
         // Load more button will be hidden after list fully loaded
         if (currentItems >= elementList.length) {
             event.target.style.display = 'none';
